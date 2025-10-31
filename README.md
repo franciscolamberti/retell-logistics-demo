@@ -1,12 +1,12 @@
-# Retell Web Call Demo
+# Retell Logistics Demo
 
-A simple demonstration of the Retell AI web call functionality that allows users to have voice conversations with an AI agent directly in their browser.
+Canadian Logistics AI Agent - Lead Qualification & FAQ Support with Retell AI. A demonstration of Retell AI web call functionality that allows users to have voice conversations with an AI agent directly in their browser.
 
 ## 🌐 Live Demo
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sidetoolco/retell-callback-demo)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/franciscolamberti/retell-logistics-demo)
 
-Try the live demo: Coming soon after deployment!
+Try the live demo: https://retell-logistics-demo-eight.vercel.app
 
 ## Features
 
@@ -21,8 +21,8 @@ Try the live demo: Coming soon after deployment!
 
 1. **Clone this repository**
    ```bash
-   git clone https://github.com/sidetoolco/retell-callback-demo.git
-   cd retell-callback-demo
+   git clone https://github.com/franciscolamberti/retell-logistics-demo.git
+   cd retell-logistics-demo
    ```
 
 2. **Open the demo**
@@ -217,7 +217,7 @@ const response = await fetch('https://api.retellai.com/v2/create-web-call', {
 
 For issues or questions:
 - [Retell Documentation](https://docs.retellai.com)
-- [GitHub Issues](https://github.com/sidetoolco/retell-callback-demo/issues)
+- [GitHub Issues](https://github.com/franciscolamberti/retell-logistics-demo/issues)
 - Check browser console for detailed error messages
 
 ## License
