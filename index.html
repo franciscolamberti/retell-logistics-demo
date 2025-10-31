@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Canadian Logistics - AI Agent Demo</title>
+    <title>FlexSpace - AI Lead Qualification & FAQ Support</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="shortcut icon" href="favicon.svg">
     <link rel="apple-touch-icon" href="favicon.svg">
@@ -244,6 +244,49 @@
         display: none;
       }
 
+      /* Example Questions */
+      .example-questions {
+        max-width: 48rem;
+        margin: 0 auto 2rem;
+      }
+
+      .example-questions-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #6b7280;
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .question-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+      }
+
+      .question-chip {
+        background: #f3f4f6;
+        color: #374151;
+        padding: 0.625rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.2s;
+        border: 1px solid #e5e7eb;
+      }
+
+      .question-chip:hover {
+        background: #e5e7eb;
+        border-color: #d1d5db;
+        transform: translateY(-1px);
+      }
+
+      .question-chip:active {
+        transform: translateY(0);
+      }
+
       /* Responsive */
       @media (max-width: 768px) {
         h2 {
@@ -252,6 +295,11 @@
 
         .description {
           font-size: 1rem;
+        }
+
+        .question-chip {
+          font-size: 0.8125rem;
+          padding: 0.5rem 0.875rem;
         }
       }
     </style>
@@ -275,7 +323,7 @@
         <!-- Live Badge -->
         <div class="badge">
           <div class="pulse-dot"></div>
-          LIVE: AI-Powered Lead Qualification & Support
+          LIVE: FlexSpace AI Assistant
         </div>
 
         <!-- Voice Waves -->
@@ -289,7 +337,7 @@
         <!-- Status Display -->
         <div id="status-area">
           <h2>
-            Canadian Logistics
+            FlexSpace
             <br />
             <span class="subtitle">AI Lead Qualification & FAQ Support</span>
           </h2>
@@ -297,6 +345,31 @@
           <p class="description">
             Connect with our AI agent for instant logistics quotes, lead qualification, and answers to your shipping questions.
           </p>
+
+          <!-- Example Questions -->
+          <div class="example-questions">
+            <div class="example-questions-title">Try asking:</div>
+            <div class="question-chips">
+              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="What is FlexSpace?">
+                What is FlexSpace?
+              </button>
+              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="How much do you charge per pallet?">
+                How much per pallet?
+              </button>
+              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="Where are your warehouses located?">
+                Where are your warehouses?
+              </button>
+              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="Can I visit the warehouse before booking?">
+                Can I tour the facility?
+              </button>
+              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="Do you offer pickup and delivery?">
+                Do you offer delivery?
+              </button>
+              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="How quickly can I move in?">
+                How fast can I move in?
+              </button>
+            </div>
+          </div>
 
           <button id="connect-btn" class="btn-primary" onclick="startCall()">
             Start Voice Call
@@ -310,7 +383,7 @@
           <h2>
             Connected
             <br />
-            <span class="subtitle">Canadian Logistics Agent</span>
+            <span class="subtitle">FlexSpace AI Agent</span>
           </h2>
 
           <div class="success-text">✅ Voice call active</div>
@@ -380,6 +453,16 @@
           });
         }
       }
+
+      // Handle example question click
+      window.handleExampleQuestion = function(button) {
+        const question = button.getAttribute('data-question');
+        console.log('📝 Selected question:', question);
+        // Store the question for later use or display
+        sessionStorage.setItem('selectedQuestion', question);
+        // Start the call
+        startCall();
+      };
 
       // Start call
       window.startCall = async function() {
