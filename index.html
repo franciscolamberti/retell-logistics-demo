@@ -287,6 +287,137 @@
         transform: translateY(0);
       }
 
+      /* Popup Overlay */
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .popup-content {
+        background: white;
+        border-radius: 1rem;
+        padding: 2rem;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        animation: slideUp 0.3s ease-out;
+        position: relative;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .popup-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: #9ca3af;
+        cursor: pointer;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s;
+      }
+
+      .popup-close:hover {
+        background: #f3f4f6;
+        color: #374151;
+      }
+
+      .popup-icon {
+        width: 3rem;
+        height: 3rem;
+        background: #dbeafe;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+      }
+
+      .popup-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #111827;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .popup-message {
+        font-size: 1rem;
+        color: #6b7280;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+      }
+
+      .popup-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+      }
+
+      .btn-popup {
+        padding: 0.625rem 1.5rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+      }
+
+      .btn-popup-primary {
+        background: black;
+        color: white;
+      }
+
+      .btn-popup-primary:hover {
+        background: #374151;
+      }
+
+      .btn-popup-secondary {
+        background: #f3f4f6;
+        color: #374151;
+      }
+
+      .btn-popup-secondary:hover {
+        background: #e5e7eb;
+      }
+
       /* Responsive */
       @media (max-width: 768px) {
         h2 {
@@ -346,31 +477,6 @@
             Connect with our AI agent for instant logistics quotes, lead qualification, and answers to your shipping questions.
           </p>
 
-          <!-- Example Questions -->
-          <div class="example-questions">
-            <div class="example-questions-title">Try asking:</div>
-            <div class="question-chips">
-              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="What is FlexSpace?">
-                What is FlexSpace?
-              </button>
-              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="How much do you charge per pallet?">
-                How much per pallet?
-              </button>
-              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="Where are your warehouses located?">
-                Where are your warehouses?
-              </button>
-              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="Can I visit the warehouse before booking?">
-                Can I tour the facility?
-              </button>
-              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="Do you offer pickup and delivery?">
-                Do you offer delivery?
-              </button>
-              <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="How quickly can I move in?">
-                How fast can I move in?
-              </button>
-            </div>
-          </div>
-
           <button id="connect-btn" class="btn-primary" onclick="startCall()">
             Start Voice Call
           </button>
@@ -402,6 +508,51 @@
             Speak naturally - the AI agent will respond in real-time
           </p>
         </div>
+
+        <!-- Example Questions (Always Visible) -->
+        <div class="example-questions">
+          <div class="example-questions-title">Try asking:</div>
+          <div class="question-chips">
+            <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="What is FlexSpace?">
+              What is FlexSpace?
+            </button>
+            <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="How much do you charge per pallet?">
+              How much per pallet?
+            </button>
+            <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="Where are your warehouses located?">
+              Where are your warehouses?
+            </button>
+            <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="Can I visit the warehouse before booking?">
+              Can I tour the facility?
+            </button>
+            <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="Do you offer pickup and delivery?">
+              Do you offer delivery?
+            </button>
+            <button class="question-chip" onclick="handleExampleQuestion(this)" data-question="How quickly can I move in?">
+              How fast can I move in?
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Popup -->
+    <div id="booking-popup" class="popup-overlay hidden">
+      <div class="popup-content">
+        <button class="popup-close" onclick="closeBookingPopup()">×</button>
+        <div class="popup-icon">📅</div>
+        <h3 class="popup-title">Try Schedule a Booking!</h3>
+        <p class="popup-message">
+          Ask the AI agent to help you schedule a visit to our warehouse or book your storage space.
+        </p>
+        <div class="popup-actions">
+          <button class="btn-popup btn-popup-primary" onclick="askBookingQuestion()">
+            Ask About Booking
+          </button>
+          <button class="btn-popup btn-popup-secondary" onclick="closeBookingPopup()">
+            Maybe Later
+          </button>
+        </div>
       </div>
     </div>
 
@@ -417,6 +568,8 @@
       let retellClient = null;
       let callDuration = 0;
       let timerInterval = null;
+      let bookingPopupTimeout = null;
+      let popupShown = false;
 
       // Initialize Retell client
       function initRetellClient() {
@@ -462,6 +615,30 @@
         sessionStorage.setItem('selectedQuestion', question);
         // Start the call
         startCall();
+      };
+
+      // Show booking popup
+      function showBookingPopup() {
+        if (!popupShown) {
+          const popup = document.getElementById('booking-popup');
+          popup.classList.remove('hidden');
+          popupShown = true;
+          console.log('📅 Booking popup shown');
+        }
+      }
+
+      // Close booking popup
+      window.closeBookingPopup = function() {
+        const popup = document.getElementById('booking-popup');
+        popup.classList.add('hidden');
+      };
+
+      // Ask booking question
+      window.askBookingQuestion = function() {
+        console.log('📝 User asked about booking');
+        closeBookingPopup();
+        // You could trigger something here if needed
+        // For example, store in analytics that user clicked on booking CTA
       };
 
       // Start call
@@ -530,6 +707,14 @@
         btn.disabled = false;
         btn.textContent = 'Start Voice Call';
         stopTimer();
+        
+        // Clear popup timeout and hide popup
+        if (bookingPopupTimeout) {
+          clearTimeout(bookingPopupTimeout);
+          bookingPopupTimeout = null;
+        }
+        closeBookingPopup();
+        popupShown = false;
       }
 
       function showError(message) {
